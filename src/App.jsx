@@ -28,29 +28,13 @@ function App() {
     <div className='App'>
       <Header />
       <div className='container mt-3'>
+        <Search />
+        <Filter />
         <div className='heading'>
-          <h2 className='tiro'>
-            RICK AND MORTY characters created on{' '}
+          <h4 className='tiro'>
+            Characters created on {''}
             {data.characters.results[0].created.slice(0, 10)}
-          </h2>
-          <form>
-            <input
-              className='border py-1 px-2'
-              placeholder='Search by name'
-              onChange={(e) => operations.updateFilter('name', e.target.value)}
-              type='string'
-            />
-            <button
-              onClick={() =>
-                refetch({
-                  charactersInput: { name: models.filters.name },
-                })
-              }
-              className='border py-1 px-2 tiro'>
-              search
-            </button>
-          </form>
-          {/* <Search /> */}
+          </h4>
         </div>
         <div className='d-flex flex-column flex-wrap'>
           {data &&

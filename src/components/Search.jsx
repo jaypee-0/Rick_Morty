@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 const Search = () => {
   return (
-    <form>
+    <form className='d-flex mb-3'>
       <input
-        className='border py-1 px-2'
+        className='border w-100 py-2 px-3'
         placeholder='Search by name'
         onChange={(e) => operations.updateFilter('name', e.target.value)}
         type='string'
@@ -15,11 +15,11 @@ const Search = () => {
             charactersInput: { name: models.filters.name },
           })
         }
-        className='border py-1 px-2 tiro'>
+        className='border py-1 px-2 px-md-3 tiro'>
         search
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

@@ -41,7 +41,7 @@ const Card = ({ id, image, name, status, species, type, gender}) => {
       </p>
       <p className='mb-0 me-4'>
       <span className='text-muted fw-bold me-1'>Gender:</span>
-        {species}
+        {gender}
       </p>
         <p className='mb-0 '>
       <span className='text-muted fw-bold me-1'>Type:</span>
