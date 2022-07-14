@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client';
 import { getAllCharacters } from './components/Queries/Queries';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import error404 from './assets/error.png';
 import './App.scss';
 import Filter from './components/Filter';
-import gif from './assets/chemicalbottle.gif'
+import Search from './components/Search';
 
 function App() {
   const { loading, error, data } = useQuery(getAllCharacters);
@@ -23,69 +23,53 @@ function App() {
         {console.log(error.name)}
       </p>
     );
-  console.log(data.characters.results[0].created);
 
   return (
     <div className='App'>
       <Header />
       <div className='container mt-3'>
         <div className='heading'>
-          <h2 className='tiro'>RICK AND MORTY characters created on {data.characters.results[0].created.slice(0, 10)}</h2>
-          <Filter />
+          <h2 className='tiro'>
+            RICK AND MORTY characters created on{' '}
+            {data.characters.results[0].created.slice(0, 10)}
+          </h2>
+          <form>
+            <input
+              className='border py-1 px-2'
+              placeholder='Search by name'
+              onChange={(e) => operations.updateFilter('name', e.target.value)}
+              type='string'
+            />
+            <button
+              onClick={() =>
+                refetch({
+                  charactersInput: { name: models.filters.name },
+                })
+              }
+              className='border py-1 px-2 tiro'>
+              search
+            </button>
+          </form>
+          {/* <Search /> */}
         </div>
-        <div className='d-flex flex-wrap'>
+        <div className='d-flex flex-column flex-wrap'>
           {data &&
-            data.characters.results.map(({ id, name, status, image, created }) => {
-              return <Card id={id} name={name} status={status} created={created} image={image} />;
-            })}
-        </div>
-      </div>
-      <div className='container mt-3'>
-        <div className='heading'>
-          <h2 className='tiro'>RICK AND MORTY characters created on {data.characters.results[0].created}</h2>
-          <Filter />
-        </div>
-        <div className='d-flex flex-wrap'>
-          {data &&
-            data.characters.results.map(({ id, name, status, image, created }) => {
-              return <Card id={id} name={name} status={status} created={created} image={image} />;
-            })}
-        </div>
-      </div>
-      <div className='container mt-3'>
-        <div className='heading'>
-          <h2 className='tiro'>RICK AND MORTY characters created on {(data.characters.results[0].created).slice(0, 10)}</h2>
-          <Filter />
-        </div>
-        <div className='d-flex flex-wrap'>
-          {data &&
-            data.characters.results.map(({ id, name, status, image, created }) => {
-              return <Card id={id} name={name} status={status} created={created} image={image} />;
-            })}
-        </div>
-      </div>
-      <div className='container mt-3'>
-        <div className='heading'>
-          <h2 className='tiro'>RICK AND MORTY characters created on {data.characters.results[0].created}</h2>
-          <Filter />
-        </div>
-        <div className='d-flex flex-wrap'>
-          {data &&
-            data.characters.results.map(({ id, name, status, image, created }) => {
-              return <Card id={id} name={name} status={status} created={created} image={image} />;
-            })}
-        </div>
-      </div>
-      <div className='container mt-3'>
-        <div className='heading'>
-          <h2 className='tiro'>RICK AND MORTY characters created on {data.characters.results[0].created}</h2>
-          <Filter />
-        </div>
-        <div className='d-flex flex-wrap'>
-          {data &&
-            data.characters.results.map(({ id, name, status, image, created }) => {
-              return <Card id={id} name={name} status={status} created={created} image={image} />;
-            })}
+            data.characters.results.map(
+              ({ id, name, status, image, created, species, type, gender }) => {
+                return (
+                  <Card
+                    id={id}
+                    name={name}
+                    status={status}
+                    species={species}
+                    gender={gender}
+                    type={type}
+                    created={created}
+                    image={image}
+                  />
+                );
+              }
+            )}
         </div>
       </div>
     </div>
