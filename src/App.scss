@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Joan&family=Lato&family=Tiro+Devanagari+Sanskrit&display=swap');
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+.carding {
+    transition: transform 100ms ease-in;
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+.tiro{
+    font-family: 'Tiro Devanagari Marathi', serif;
+}
+.lato {
+    font-family: 'Lato', sans-serif;
+}
+.heading {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
